@@ -1,5 +1,7 @@
 package v2.util;
 
+import java.util.Arrays;
+
 public class Matrixes {
     public static String printMatrix(double[][] m)  {
         StringBuilder str = new StringBuilder(100);
@@ -9,6 +11,10 @@ public class Matrixes {
             str.append("\n");
         }
         return str.toString();
+    }
+    public static void reset(double[][] m) {
+        for(int i=0;i<m.length;++i)
+            Arrays.fill(m[i],0);
     }
 
 }

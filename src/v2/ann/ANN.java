@@ -6,8 +6,11 @@ import v2.util.Matrixes;
 import v2.util.Vectors;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class ANN {
     private Layer[] layers;
@@ -45,8 +48,46 @@ public class ANN {
         }
         return input;
     }
+    public void train(double[][] X,double[][] Y, int batchsize,int epochs) {
+        int n_batch=X.length/batchsize;
 
-    public void train(double[][] X, double[][] Y) {
+
+        List<Integer> values = IntStream.rangeClosed(0, X.length-1)
+                .boxed().collect(Collectors.toList());
+        //Collections.shuffle(values);
+
+        double[][] batch_X=new double[batchsize][X[0].length];
+        double[][] batch_Y=new double[batchsize][Y[0].length];
+
+        for (int e = 0; e < epochs; ++e) {
+            int k=0;
+
+            for (int i = 0; i < n_batch; ++i) {
+                this.resetDeltas();
+                for (int j = 0; j < batchsize; ++j) {
+                    batch_X[j] = X[values.get(k)];
+                    batch_Y[j] = Y[values.get(k)];
+                    k++;
+                }
+                // from here batch is completed in batch_X batch_Y
+                train(batch_X, batch_Y);
+                this.update(batchsize);
+            }
+
+        }
+    }
+
+    private void resetDeltas() {
+        for(Layer l : layers)
+            l.resetAll();
+    }
+    private void update(int batchsize) {
+        for(Layer l : layers)
+            l.updateAll(batchsize);
+    }
+
+    private void train(double[][] X, double[][] Y) {
+
         int n_sample_input=X.length, inputDim=X[0].length;
         int n_sample_output=Y.length, outputDim=Y[0].length;
 
@@ -78,11 +119,11 @@ public class ANN {
 
                 if(j>0) {
                     l_prec=layers[j-1];
-                    l_curr.updateWeights(l_prec.getA());
+                    l_curr.update_delta_Weights(l_prec.getA());
                 }
                 else
-                    l_curr.updateWeights(X[i]);
-                l_curr.updateBiases();
+                    l_curr.update_delta_Weights(X[i]);
+                l_curr.update_delta_Biases();
             }
         }
     }

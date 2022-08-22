@@ -20,14 +20,14 @@ public class Tester {
         int nLayers=3;
         int[] neuronPerLayer={2,2,1};
         ActivationFunction[] activationFunctions=new ActivationFunction[3];
-        activationFunctions[0]=new Sigmoid();
-        activationFunctions[1]=new Sigmoid();
-        activationFunctions[2]=new Relu();
+        activationFunctions[0]=new Relu();
+        activationFunctions[1]=new Relu();
+        activationFunctions[2]=new Sigmoid();
 
         ANN ann = new ANN(inputDim,neuronPerLayer,activationFunctions);
-        System.out.println(ann);
+        //System.out.println(ann);
 
-        int p = 200000;
+        int p = 100000;
         Random r = new Random();
         double[][] X = new double[p][2];
         double[][] Y = new double[p][1];
@@ -40,9 +40,10 @@ public class Tester {
             Y[i][0]=xor(a,b);
         }
 
+        int batchsize=1;
+        int epochs=2;
 
-
-        ann.train(X,Y);
+        ann.train(X,Y,batchsize,epochs);
         double[] test_x=new double[2];
         for(int i=0;i<p;++i) {
             int a=r.nextInt(2);
