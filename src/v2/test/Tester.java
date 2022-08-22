@@ -10,7 +10,6 @@ import v2.ann.ANN;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -28,7 +27,7 @@ public class Tester {
         ANN ann = new ANN(inputDim,neuronPerLayer,activationFunctions);
         System.out.println(ann);
 
-        int p = 100000;
+        int p = 200000;
         Random r = new Random();
         double[][] X = new double[p][2];
         double[][] Y = new double[p][1];
@@ -53,8 +52,9 @@ public class Tester {
             System.out.println("Y real : "+xor(a,b)+" ||| Y pred : "+ ann.evaluate(test_x)[0]);
         }
 
+
         try {
-            PrintWriter writer = new PrintWriter("error.txt", "UTF-8");
+            PrintWriter writer = new PrintWriter("error.csv", "UTF-8");
             List<Double> tmp = ann.getErrors();
             for(double x : tmp)
                 writer.print(x+"\n");
@@ -63,6 +63,8 @@ public class Tester {
         } catch (UnsupportedEncodingException e) {
             throw new RuntimeException(e);
         }
+
+
 
 
     }

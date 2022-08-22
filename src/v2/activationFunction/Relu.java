@@ -10,6 +10,6 @@ public class Relu implements ActivationFunction{
 
     @Override
     public double derive(double value) {
-        return (value>0) ? value : 0;
+        return (value>0) ? 1 : 0;
     }
 }
