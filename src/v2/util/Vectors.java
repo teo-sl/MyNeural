@@ -16,4 +16,24 @@ public class Vectors {
             sum+=Math.abs(a[i]-b[i]);
         return sum;
     }
+
+    public static double[] convertToPositional(int label) {
+        double[] ret=new double[10];
+        for(int i=0;i<10;++i) {
+            if(i==label) ret[i]=1;
+            else ret[i]=0;
+        }
+        return ret;
+    }
+
+    public static int getMaxIndex(double[] evaluate) {
+        double max=evaluate[0];
+        int ret=0;
+        for(int i=0;i<evaluate.length;++i)
+            if(evaluate[i]>max) {
+                max=evaluate[i];
+                ret=i;
+            }
+        return ret;
+    }
 }

@@ -5,6 +5,7 @@ import v2.layer.Layer;
 import v2.util.Matrixes;
 import v2.util.Vectors;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
@@ -12,7 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class ANN {
+public class ANN implements Serializable {
     private Layer[] layers;
     private int inputDim,outputDim,numberOfLayer;
 
@@ -73,7 +74,7 @@ public class ANN {
                 train(batch_X, batch_Y);
                 this.update(batchsize);
             }
-
+            System.out.println("Done epoch "+e);
         }
     }
 
@@ -104,7 +105,7 @@ public class ANN {
 
             Y_pred=this.evaluate(X[i]);
             Y_real=Y[i];
-            errors.add(Vectors.squaredError(Y_pred,Y_real));
+            //errors.add(Vectors.squaredError(Y_pred,Y_real));
 
             delta_curr=layers[numberOfLayer-1].computeDeltaOutput(Y[i]);
 

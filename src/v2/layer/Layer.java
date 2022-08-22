@@ -4,10 +4,11 @@ import v2.activationFunction.ActivationFunction;
 import v2.util.Matrixes;
 import v2.util.Vectors;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class Layer {
+public class Layer implements Serializable {
     private static double lr=0.1;
     private double[][] weights,delta_w;
     private double[] biases,delta_b;
