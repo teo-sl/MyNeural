@@ -13,8 +13,8 @@ public class Vectors {
         if(a.length!=b.length) throw new IllegalArgumentException("Vettori di dimensione non coerente");
         double sum=0;
         for(int i=0;i<a.length;++i)
-            sum+=Math.abs(a[i]-b[i]);
-        return sum;
+            sum+=Math.pow(a[i]-b[i],2);
+        return Math.sqrt(sum)/a.length;
     }
 
     public static double[] convertToPositional(int label) {

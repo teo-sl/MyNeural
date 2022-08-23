@@ -17,12 +17,11 @@ public class Tester {
 
     public static void main(String[] args) {
         int inputDim=2;
-        int nLayers=3;
-        int[] neuronPerLayer={2,2,1};
-        ActivationFunction[] activationFunctions=new ActivationFunction[3];
+        int nLayers=2;
+        int[] neuronPerLayer={2,1};
+        ActivationFunction[] activationFunctions=new ActivationFunction[nLayers];
         activationFunctions[0]=new Relu();
-        activationFunctions[1]=new Relu();
-        activationFunctions[2]=new Sigmoid();
+        activationFunctions[1]=new Sigmoid();
 
         ANN ann = new ANN(inputDim,neuronPerLayer,activationFunctions);
         //System.out.println(ann);
@@ -41,7 +40,7 @@ public class Tester {
         }
 
         int batchsize=1;
-        int epochs=2;
+        int epochs=1;
 
         ann.train(X,Y,batchsize,epochs);
         double[] test_x=new double[2];
@@ -55,7 +54,7 @@ public class Tester {
 
 
         try {
-            PrintWriter writer = new PrintWriter("error.csv", "UTF-8");
+            PrintWriter writer = new PrintWriter("./python/error.csv", "UTF-8");
             List<Double> tmp = ann.getErrors();
             for(double x : tmp)
                 writer.print(x+"\n");
@@ -64,6 +63,8 @@ public class Tester {
         } catch (UnsupportedEncodingException e) {
             throw new RuntimeException(e);
         }
+
+        System.out.println(ann);
 
 
 

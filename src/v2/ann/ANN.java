@@ -1,7 +1,6 @@
 package v2.ann;
 
 import v2.activationFunction.ActivationFunction;
-import v2.layer.Layer;
 import v2.util.Matrixes;
 import v2.util.Vectors;
 
@@ -55,7 +54,7 @@ public class ANN implements Serializable {
 
         List<Integer> values = IntStream.rangeClosed(0, X.length-1)
                 .boxed().collect(Collectors.toList());
-        //Collections.shuffle(values);
+        Collections.shuffle(values);
 
         double[][] batch_X=new double[batchsize][X[0].length];
         double[][] batch_Y=new double[batchsize][Y[0].length];
@@ -105,7 +104,7 @@ public class ANN implements Serializable {
 
             Y_pred=this.evaluate(X[i]);
             Y_real=Y[i];
-            //errors.add(Vectors.squaredError(Y_pred,Y_real));
+            errors.add(Vectors.squaredError(Y_pred,Y_real));
 
             delta_curr=layers[numberOfLayer-1].computeDeltaOutput(Y[i]);
 

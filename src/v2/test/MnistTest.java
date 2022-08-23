@@ -57,7 +57,7 @@ public class MnistTest {
             throw new RuntimeException(e);
         }
 
-        String fileName= "object.txt";
+        String fileName= "object1.txt";
         FileOutputStream fos = new FileOutputStream(fileName);
         ObjectOutputStream oos = new ObjectOutputStream(fos);
         oos.writeObject(ann);
