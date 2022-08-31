@@ -36,7 +36,7 @@ Where
 
 $$ \frac{\partial C}{\partial a_j^l }=a_k^{l-1}$$
 
-For the biases ($\frac{\partial{C}}{\partial{b_{j}^l}}$), the $\frac{\partial C}{\partial a_j^l}$ part become equals to "1"
+For the biases ( $\frac{\partial{C}}{\partial{b_{j}^l}}$ ), the $\frac{\partial C}{\partial a_j^l}$ part become equals to "1"
 
 $$ \frac{\partial a_j^l }{\partial z_j^l } = \sigma^{'}(z_j^l) $$
 
@@ -57,7 +57,7 @@ For the last layer (referred to with a capital l, "L").
 
 $$ \frac{\partial z_j^L }{\partial w_{ij} ^L} = 2(a_j^L-y_j)$$
 
-Where y_j is the real value and a_j^L the predicted one.
+Where $y_j$ is the real value and $a_j^L$ the predicted one.
 <br>
 For the hidden layers, the formula is.
 
